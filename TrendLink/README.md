@@ -41,22 +41,6 @@ monad-blitz-seoul/
     │                         # - 온체인 검색 기록 저장
     │                         # - CCIP 메시지 수신 처리
     │
-    ├── proxy/              # 🔄 프론트엔드 라우터 (React/TypeScript)
-    │   ├── SearchGateway.tsx # 검색 라우터 메인 컴포넌트
-    │   ├── hooks/            # 커스텀 훅들
-    │   │   ├── useSearchAPI.ts   # 외부 검색 API 연동
-    │   │   ├── useCCIPSender.ts  # CCIP 메시지 전송
-    │   │   └── useRewards.ts     # 보상 처리
-    │   ├── services/         # 서비스 로직
-    │   │   ├── searchProxy.ts    # 검색 API 프록시
-    │   │   ├── ccipClient.ts     # CCIP 클라이언트
-    │   │   └── rewardService.ts  # 보상 서비스
-    │   └── types.ts          # 도메인 모델 정의 (User, Platform 등)
-    │                         # - 검색 요청 라우팅
-    │                         # - 외부 검색 API 연동
-    │                         # - CCIP 메시지 전송
-    │                         # - 보상/로그 생성
-    │
     ├── widget/               # 📦 검색 위젯 (React, 프론트엔드)
     │   ├── App.tsx           # 메인 위젯 컴포넌트
     │   ├── web3auth.ts       # Web3Auth 연동
@@ -64,6 +48,26 @@ monad-blitz-seoul/
     │                         # - 실제 서비스 삽입용 위젯
     │                         # - Web3Auth 연동
     │                         # - 게이트웨이와 통신
+    │
+    ├── prototype/            # 🔄 프로토타입 개발
+    │   ├── proxy/            # 프론트엔드 라우터 (React/TypeScript)
+    │   │   ├── SearchGateway.tsx # 검색 라우터 메인 컴포넌트
+    │   │   ├── hooks/            # 커스텀 훅들
+    │   │   │   ├── useSearchAPI.ts   # 외부 검색 API 연동
+    │   │   │   ├── useCCIPSender.ts  # CCIP 메시지 전송
+    │   │   │   └── useRewards.ts     # 보상 처리
+    │   │   ├── services/         # 서비스 로직
+    │   │   │   ├── searchProxy.ts    # 검색 API 프록시
+    │   │   │   ├── ccipClient.ts     # CCIP 클라이언트
+    │   │   │   └── rewardService.ts  # 보상 서비스
+    │   │   └── types.ts          # 도메인 모델 정의 (User, Platform 등)
+    │   │                         # - 검색 요청 라우팅
+    │   │                         # - 외부 검색 API 연동
+    │   │                         # - CCIP 메시지 전송
+    │   │                         # - 보상/로그 생성
+    │   └── templates/
+    │       ├── AnalyticsDashboard.jsx
+    │       └── MainWidget.jsx
     │
     ├── docs/                 # 📚 문서/설계서
     │   └─── requirements.md   # 요구사항 명세
