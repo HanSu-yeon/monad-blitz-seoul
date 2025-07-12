@@ -40,7 +40,8 @@ monad-blitz-seoul/
     │                         # - 보상 분배 로직
     │                         # - 온체인 검색 기록 저장
     │                         # - CCIP 메시지 수신 처리
-    ├── gateway/              # 🔄 프론트엔드 라우터 (React/TypeScript)
+    │
+    ├── proxy/              # 🔄 프론트엔드 라우터 (React/TypeScript)
     │   ├── SearchGateway.tsx # 검색 라우터 메인 컴포넌트
     │   ├── hooks/            # 커스텀 훅들
     │   │   ├── useSearchAPI.ts   # 외부 검색 API 연동
@@ -55,6 +56,7 @@ monad-blitz-seoul/
     │                         # - 외부 검색 API 연동
     │                         # - CCIP 메시지 전송
     │                         # - 보상/로그 생성
+    │
     ├── widget/               # 📦 검색 위젯 (React, 프론트엔드)
     │   ├── App.tsx           # 메인 위젯 컴포넌트
     │   ├── web3auth.ts       # Web3Auth 연동
@@ -62,6 +64,7 @@ monad-blitz-seoul/
     │                         # - 실제 서비스 삽입용 위젯
     │                         # - Web3Auth 연동
     │                         # - 게이트웨이와 통신
+    │
     ├── docs/                 # 📚 문서/설계서
     │   └─── requirements.md   # 요구사항 명세
     │   
@@ -87,7 +90,8 @@ monad-blitz-seoul/
 
 ### 📊 분석자 요구사항 (Analyst Requirements)
 
-- **📈 플랫폼별 분석**: 각 검색어별로 **어떤 플랫폼(pickle, 누누TV 등)**에서 얼마나 발생했는지 플랫폼별 점유율을 확인할 수 있어야 한다
+- **📈 플랫폼별 분석**: 각 검색어별로 
+- **어떤 플랫폼(pickle, 누누TV 등)**에서 얼마나 발생했는지 플랫폼별 점유율을 확인할 수 있어야 한다
 - **📅 기간별 통계**: 검색 이벤트의 전체 수량 및 기간별(일/주/월) 통계를 조회할 수 있어야 한다
 - **👤 사용자 분석**: 사용자 로그인 여부에 따라 익명/지갑 기반 사용자 비율도 파악할 수 있어야 한다
 
@@ -109,14 +113,6 @@ monad-blitz-seoul/
 | 인증 시스템 | Web3Auth | Google, Twitter, Email 등 소셜 로그인 지원 |
 | 스타일링 | Tailwind CSS | 유틸리티 퍼스트 CSS 프레임워크 |
 | 패키지 매니저 | npm | 표준 JavaScript 패키지 관리 도구 |
-
-## 🌐 백엔드 스택 (외부 API 연동)
-
-| 항목 | 기술 | 설명 |
-|------|------|------|
-| 검색 API | Algolia/Elasticsearch | 기존 검색 엔진 REST API 연동 |
-| 온체인 연동 | Wagmi + viem | 프론트엔드에서 직접 블록체인 상호작용 |
-| CCIP 클라이언트 | @chainlink/contracts-ccip | 프론트엔드에서 CCIP 메시지 전송 |
 
 ## 📋 스마트컨트랙트 구현 기능 명세
 
