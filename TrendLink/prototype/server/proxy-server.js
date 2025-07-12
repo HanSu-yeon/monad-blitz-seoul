@@ -13,6 +13,9 @@ app.use(express.json());
 const CLIENT_ID = 'qLba1KCz4zla91Plq8xr';
 const CLIENT_SECRET = '3WvVPoz_OF';
 
+// 국회의원 API 키
+const ASSEMBLY_API_KEY = 'f166c9a9fe8c4a3b991509332838a5f1';
+
 // 네이버 검색 프록시 엔드포인트
 app.get('/api/naver/search/:type', async (req, res) => {
     const { type } = req.params;
@@ -113,6 +116,54 @@ app.get('/api/naver/integrated', async (req, res) => {
         console.error('통합 검색 오류:', error);
         res.status(500).json({ 
             error: '통합 검색 중 오류가 발생했습니다.',
+            message: error.message 
+        });
+    }
+});
+
+// 국회의원 검색 프록시 엔드포인트
+app.get('/api/assembly/search', async (req, res) => {
+    const { memberName, page = 1, size = 10 } = req.query;
+
+    try {
+        const params = new URLSearchParams({
+            Key: ASSEMBLY_API_KEY,
+            Type: 'json',
+            pIndex: page,
+            pSize: size
+        });
+
+        // 국회의원명이 있으면 검색 조건 추가
+        if (memberName && memberName.trim()) {
+            params.append('NAAS_NM', memberName.trim());
+        }
+
+        const apiUrl = `https://open.assembly.go.kr/portal/openapi/ALLNAMEMBER?${params.toString()}`;
+        
+        console.log('국회의원 검색 요청:', apiUrl);
+
+        const response = await fetch(apiUrl, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'User-Agent': 'TrendLink/1.0'
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        
+        console.log('국회의원 검색 응답:', data);
+        
+        res.json(data);
+
+    } catch (error) {
+        console.error('국회의원 검색 오류:', error);
+        res.status(500).json({ 
+            error: '국회의원 검색 중 오류가 발생했습니다.',
             message: error.message 
         });
     }

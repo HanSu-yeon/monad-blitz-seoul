@@ -16,7 +16,11 @@ export default defineConfig({
       '@': path.resolve(__dirname, '.')
     }
   },
+  define: {
+    global: 'globalThis',
+    'process.env': {}
+  },
   optimizeDeps: {
-    include: ['@web3auth/modal', '@web3auth/base', '@web3auth/ethereum-provider']
+    include: ['web3']
   }
 })
